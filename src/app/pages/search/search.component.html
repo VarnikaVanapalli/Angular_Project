@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="col-md-2 text-center">
-                  <button type="button" (click)="onSearch()" class="btn btn-light  w-100">SEARCH BUSES</button>
+                  <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button>
                 </div>
               </div>
             </form>
@@ -51,7 +51,10 @@
 
     <!-- Buses List -->
     <section id="buses-list" class="my-4">
+      <div [ngClass]="{ 'hidden': isHidden, 'visible': !isHidden }">
         <h2>Available Buses</h2>
+      </div>
+        
         @for (item of busList; track $index) {
 
           <div class="row">
