@@ -3,16 +3,23 @@ import { MasterService } from '../../service/master.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink,RouterOutlet,RouterModule,Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
+import { LoginPageComponent } from '../login-page/login-page.component';
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AsyncPipe,FormsModule,DatePipe,RouterLink,CommonModule],
+  imports: [AsyncPipe,FormsModule,DatePipe,RouterLink,CommonModule,RouterOutlet,RouterModule,LoginPageComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
+  // constructor(private router: Router) {}
+
+  // // Method to navigate to the login page
+  // goToLogin() {
+  //   this.router.navigate(['/login-page']);
+  // }
 
   location$: Observable<any[]> = new Observable<any[]>;
 
@@ -31,6 +38,7 @@ export class SearchComponent implements OnInit {
     this.location$=this.masterSrv.getLocations();
 
   }
+  
   isHidden: boolean = true;
   toggleVisibility() {
     this.isHidden = false;  // Toggle visibility
