@@ -43,10 +43,12 @@ ul li{
     font-size: 20px;
     color: black;
     margin: 10px;
+    border:0px solid black;
 }
 
 ul li:hover{
     font-weight: 500;
+    border-bottom:1px solid black;
 }
 
 .login-btn{
@@ -62,8 +64,10 @@ ul li:hover{
     cursor: pointer;
     border: none;
     text-decoration: none;
+    transition: 0.6s;
 }
 
 .login-btn:hover{
     background: linear-gradient(135deg, rgb(84, 91, 91),rgb(66, 65, 64));
+
 }
