@@ -37,6 +37,78 @@ header h1{
     border: none;
   }
 
+  .navbar{
+    display: flex;
+    border-radius: 50px;
+    top: 0;
+    width: 95%;
+    background-color: rgba(255,255,255,0.3);
+    backdrop-filter: blur(15px);
+    padding: 15px;
+    margin: 20px auto;
+    position: sticky;
 
+}
+
+.bg-con{
+    background: linear-gradient(rgba(8,0,58,0.7),rgba(8,0,58,0.7));
+
+}
+
+.bg-image{
+    
+    height: 100%;
+    width: 100%;
+    float: left;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: none;
+    position: fixed;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+
+.logoimage{
+
+    height: 60px;
+    margin: 10px;
+}
+
+ul li{
+    font-size: 20px;
+    color: black;
+    margin: 10px;
+    border:0px solid black;
+}
+
+ul li:hover{
+    font-weight: 500;
+    border-bottom:1px solid black;
+}
+
+.login-btn{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgb(66, 65, 64),rgb(84, 91, 91));
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: 0.6s;
+}
+
+.login-btn:hover{
+    background: linear-gradient(135deg, rgb(84, 91, 91),rgb(66, 65, 64));
+
+}
 
  
