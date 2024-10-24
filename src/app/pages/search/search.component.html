@@ -1,15 +1,15 @@
 
 <div class="container">
-    <header class="my-4">
-        <h1 class="text-center">Bus Booking System</h1>
+    <header class="heading">
+        <h1 class="">Bus Booking System</h1>
     </header>
 
     <!-- Search Form -->
-    <section>
+    <section class="search-sec">
         <div class="container mt-5 d-flex justify-content-center">
             <form class="search-form d-flex align-items-center shadow-lg">
-              <div class="row w-100 text-white">
-                <div class="col-md-3 d-flex align-items-center">
+              <div class=" row w-100 text-white">
+                <div class=" col-md-3 d-flex align-items-center">
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
                     <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="col-md-2 text-center">
-                  <button type="button" (click)="onSearch()" class="btn btn-light text-danger w-100">SEARCH BUSES</button>
+                  <button type="button" (click)="onSearch()" class="btn btn-light  w-100">SEARCH BUSES</button>
                 </div>
               </div>
             </form>

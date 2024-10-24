@@ -1,0 +1,29 @@
+.search-con{
+    background: black;
+    
+}
+
+
+
+header h1{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 80px;
+}
+
+.search-form {
+    background-color: rgba(255,255,255,0.5); /* Background color similar to the image */
+    padding: 30px;
+    border-radius: 20px;
+    margin-top: 5%;
+  }
+  .search-form .form-control {
+    border-radius: 20px;
+  }
+  .search-form button {
+    border-radius: 20px;
+  }
+  .search-form .input-group-text {
+    background-color: transparent;
+    border: none;
+  }
