@@ -81,7 +81,7 @@ header h1{
 }
 
 ul li{
-    font-size: 20px;
+    font-size: 16px;
     color: black;
     margin: 10px;
     border:0px solid black;
@@ -96,11 +96,11 @@ ul li:hover{
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
-    padding: 10px;
+    padding: 6px;
     border-radius: 10px;
     background: linear-gradient(135deg, rgb(24, 24, 24),rgb(111, 123, 123));
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     cursor: pointer;
     border: none;
