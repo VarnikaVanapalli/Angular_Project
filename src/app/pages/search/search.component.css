@@ -3,6 +3,13 @@
     
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
 
 
 header h1{

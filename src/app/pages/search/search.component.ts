@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common'; 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AsyncPipe,FormsModule,DatePipe,RouterLink],
+  imports: [AsyncPipe,FormsModule,DatePipe,RouterLink,CommonModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
@@ -29,6 +30,10 @@ export class SearchComponent implements OnInit {
   getAllLocations(){
     this.location$=this.masterSrv.getLocations();
 
+  }
+  isHidden: boolean = true;
+  toggleVisibility() {
+    this.isHidden = false;  // Toggle visibility
   }
   onSearch(){
     const {fromLocation,toLocation,travelDate} = this.searchObj;
