@@ -55,10 +55,15 @@ ul li:hover{
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    background: linear-gradient(135deg, rgb(62, 60, 58),rgb(84, 91, 91));
+    background: linear-gradient(135deg, rgb(66, 65, 64),rgb(84, 91, 91));
     color: white;
     font-size: 20px;
+    text-align: center;
     cursor: pointer;
     border: none;
     text-decoration: none;
+}
+
+.login-btn:hover{
+    background: linear-gradient(135deg, rgb(84, 91, 91),rgb(66, 65, 64));
 }
