@@ -1,5 +1,5 @@
 .tp-sec{
-    background: rgb(58, 97, 56);
+    background: rgb(233, 190, 134);
     width: 100%;
     padding: 40px;
     margin-top: 52vh;
@@ -14,18 +14,48 @@
 }
 
 .tp-cards{
-    border: 1px solid black;
+  
     display: flex;
     flex-wrap: wrap;
-    padding: 30px;
+    padding: 20px;
     justify-content: space-between;
     align-items: center;
-    margin: 30px;
+    margin: 20px;
 }
 
 .tp-card{
-    border: 1px solid red;
-    width: 30%;
+   
+    width: 22%;
+    
+    border-radius: 30px;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 15px #141414;
+    cursor: pointer;
+}
+
+.tp-card:hover{
+    transform: scale(1.2);
+}
+
+.tp-card-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    object-fit: cover;
     
 }
+
+.tp-card-heading{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+   
+    text-shadow: 0 0 15px #556051;
+    color: black;
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+
 
