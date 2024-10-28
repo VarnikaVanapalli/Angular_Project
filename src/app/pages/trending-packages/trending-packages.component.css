@@ -11,6 +11,9 @@
     text-align: center;
     text-shadow: 0 0 15px #556051;
     color: black;
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 59, 2); 
+    
 }
 
 .tp-cards{
@@ -25,17 +28,38 @@
 
 .tp-card{
    
-    width: 22%;
-    
+    transform: scale(1.1);
+    flex-basis: 21%;
     border-radius: 30px;
     justify-content: center;
     position: relative;
-    box-shadow: 0 0 15px #141414;
+    box-shadow: 0 20px 15px #141414;
     cursor: pointer;
 }
 
-.tp-card:hover{
-    transform: scale(1.2);
+.tp-card-content{
+    border-radius: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,15,152, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #ffffff;
+    cursor:pointer;
+    opacity: 0;
+    padding-right: 70%;
+    transition: 0.6s;
+}
+
+.tp-card:hover .tp-card-content{
+    opacity: 1;
+    padding-left: 10%;
+   
 }
 
 .tp-card-img img{
@@ -51,8 +75,8 @@
     text-align: center;
    
     text-shadow: 0 0 15px #556051;
-    color: black;
-    font-size: 25px;
+   
+    font-size: 20px;
     position: absolute;
     top: 50%;
     left: 10%;
