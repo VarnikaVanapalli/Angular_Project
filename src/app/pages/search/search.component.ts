@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink,RouterOutlet,RouterModule,Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { LoginPageComponent } from '../login-page/login-page.component';
+import { BusSeatsComponent } from "../bus-seats/bus-seats.component";
+import { TrendingPackagesComponent } from "../trending-packages/trending-packages.component";
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AsyncPipe,FormsModule,DatePipe,RouterLink,CommonModule,RouterOutlet,RouterModule,LoginPageComponent],
+  imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, LoginPageComponent, BusSeatsComponent, TrendingPackagesComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })

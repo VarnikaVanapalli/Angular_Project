@@ -1,0 +1,31 @@
+.tp-sec{
+    background: rgb(58, 97, 56);
+    width: 100%;
+    padding: 40px;
+    margin-top: 52vh;
+    min-height: 60vh;
+}
+
+.tp-heading{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    text-shadow: 0 0 15px #556051;
+    color: black;
+}
+
+.tp-cards{
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+}
+
+.tp-card{
+    border: 1px solid red;
+    width: 30%;
+    
+}
+
