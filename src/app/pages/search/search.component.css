@@ -104,7 +104,7 @@ ul li:hover{
     border-radius: 5px;
     background: linear-gradient(135deg, rgb(24, 24, 24),rgb(111, 123, 123));
     color: white;
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
     cursor: pointer;
     border: none;
@@ -115,6 +115,8 @@ ul li:hover{
 .login-btn:hover{
     background: linear-gradient(135deg, rgb(111, 123, 123),rgb(24, 24, 24));
     color: white;
-   
+    
+
+
 }
  
