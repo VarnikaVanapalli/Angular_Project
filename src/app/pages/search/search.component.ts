@@ -9,10 +9,11 @@ import { LoginPageComponent } from '../login-page/login-page.component';
 import { BusSeatsComponent } from "../bus-seats/bus-seats.component";
 import { TrendingPackagesComponent } from "../trending-packages/trending-packages.component";
 import { FooterComponent } from "../footer/footer.component";
+import { EnjoyAppComponent } from "../enjoy-app/enjoy-app.component";
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, LoginPageComponent, BusSeatsComponent, TrendingPackagesComponent, FooterComponent],
+  imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, LoginPageComponent, BusSeatsComponent, TrendingPackagesComponent, FooterComponent, EnjoyAppComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
