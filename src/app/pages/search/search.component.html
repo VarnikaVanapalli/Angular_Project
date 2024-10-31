@@ -58,7 +58,7 @@
               <div class=" row w-100 text-white">
                 <div class=" col-md-3 d-flex align-items-center">
                   <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+                    <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
                     <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
                       <option value="" disabled selected>Select from Available Locations</option>
                       @for (item of location$ |async; track $index) {
@@ -69,7 +69,7 @@
                   </div>
                 </div>
                 <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
-                  <i class="bi bi-arrow-left-right fs-3"></i>
+                  <i class="bi bi-arrow-left-right fs-4 text-black"></i>
                 </div>
                 <div class="col-md-3 d-flex align-items-center">
                   <div class="input-group">
