@@ -49,7 +49,7 @@ header h1{
     backdrop-filter: blur(15px);
     padding: 15px;
     margin: 10px auto;
-    position: sticky;
+    position: static;
 
 }
 
