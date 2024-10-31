@@ -22,7 +22,7 @@
   
     display: flex;
     flex-wrap: wrap;
-    padding: 50px;
+    padding: 20px;
     justify-content: space-between;
     align-items: center;
     margin: 10px auto;
@@ -31,14 +31,15 @@
 .tp-card{
    
     transform: scale(1.0);
-    width: 40%;
-    margin: 30px;
-    /* flex-basis: 21%; */
+    
+  
+    flex-basis: 21%;
     border-radius: 30px;
     justify-content: center;
     position: relative;
     box-shadow: 0 20px 20px #141414;
     cursor: pointer;
+    
 }
 
 .tp-card-content{
@@ -58,11 +59,13 @@
     opacity: 0;
     padding-right: 70%;
     transition: 0.6s;
+    
 }
 
 .tp-card:hover .tp-card-content{
     opacity: 1;
     padding-left: 10%;
+    
    
 }
 
