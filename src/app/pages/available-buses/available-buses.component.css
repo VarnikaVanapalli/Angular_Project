@@ -1,9 +1,17 @@
+.navbar{
+    display: flex;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255,255,255);
+    padding: 15px;
+    position: fixed;
+   
+}
+
 .search-con{
     background: black;
     
 }
-
-
 
 .hidden {
   display: none;
@@ -22,12 +30,20 @@ header h1{
     text-shadow: 0 0 15px #556051;
 }
 
+.search-sec{
+    width: 100%;
+}
+
 .search-form {
-    background-color: rgba(255,255,255,0.7); /* Background color similar to the image */
+    background-color:antiquewhite; /* Background color similar to the image */
     backdrop-filter: blur(5px);
     padding: 30px;
+    width: 100%;
     border-radius: 20px;
-    margin-top: 8px;
+    z-index: -1;
+    position:absolute;
+    top: 100px;
+    
   }
   .search-form .form-control {
     border-radius: 20px;
@@ -40,18 +56,7 @@ header h1{
     border: none;
   }
 
-  .navbar{
-    display: flex;
-    border-radius: 50px;
-    top: 0;
-    width: 95%;
-    background-color: rgba(255,255,255,0.3);
-    backdrop-filter: blur(15px);
-    padding: 15px;
-    margin: 10px auto;
-    position: static;
 
-}
 
 .bg-con{
     background: linear-gradient(rgba(8,0,58,0.7),rgba(8,0,58,0.7));

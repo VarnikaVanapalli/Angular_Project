@@ -89,7 +89,8 @@
                   </div>
                 </div>
                 <div class="col-md-2 text-center">
-                  <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button>
+                  <!-- <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button> -->
+                  <a class="btn btn-light  w-100" [routerLink]="['/available-buses']">Search Buses</a>
                 </div>
               </div>
             </form>
