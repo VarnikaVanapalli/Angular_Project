@@ -2,10 +2,10 @@
     display: flex;
     top: 0;
     width: 100%;
-    background-color: rgba(255,255,255);
+    background-color: rgb(235, 237, 235);
     padding: 15px;
     position: fixed;
-   
+    z-index: 2;
 }
 
 .search-con{
@@ -13,13 +13,13 @@
     
 }
 
-.hidden {
+/* .hidden {
   display: none;
 }
 
 .visible {
   display: block;
-}
+} */
 
 
 header h1{
@@ -40,43 +40,39 @@ header h1{
     padding: 30px;
     width: 100%;
     border-radius: 20px;
-    z-index: -1;
+    
     position:absolute;
     top: 100px;
+    border: 5px solid rgb(192, 248, 192);
     
+
   }
   .search-form .form-control {
     border-radius: 20px;
+    cursor: pointer;
   }
   .search-form button {
     border-radius: 20px;
+    cursor: pointer;
   }
   .search-form .input-group-text {
     background-color: transparent;
     border: none;
+    cursor: pointer;
   }
 
 
-
-.bg-con{
-    background: linear-gradient(rgba(8,0,58,0.7),rgba(8,0,58,0.7));
-
+.ab-con{
+    border: 1px solid black;
+    background: rgb(255, 230, 197);
+    margin: 180px auto;
+    width: 80%;
+    padding: 20px;
+    border-radius: 30px;
 }
 
-.bg-image{
-    
-    height: 100%;
-    width: 100%;
-    float: left;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: none;
-    position: fixed;
-    object-fit: cover;
-    z-index: -1;
-}
+
+
 
 
 

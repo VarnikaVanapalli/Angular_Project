@@ -23,7 +23,7 @@ import { BrowserModule } from '@angular/platform-browser';
   templateUrl: './available-buses.component.html',
   styleUrl: './available-buses.component.css'
 })
-export class AvailableBusesComponent {
+export class AvailableBusesComponent implements OnInit {
 
   location$: Observable<any[]> = new Observable<any[]>;
 
