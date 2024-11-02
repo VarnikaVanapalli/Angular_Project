@@ -4,6 +4,7 @@ import { BookingComponent } from './pages/booking/booking.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { BusSeatsComponent } from './pages/bus-seats/bus-seats.component';
 import { AvailableBusesComponent } from './pages/available-buses/available-buses.component';
+import { MovingbusComponent } from './pages/movingbus/movingbus.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,10 @@ export const routes: Routes = [
     {
         path:'available-buses',
         component:AvailableBusesComponent
+    },
+    {
+        path:'movingbus',
+        component:MovingbusComponent
     }
 
 ];

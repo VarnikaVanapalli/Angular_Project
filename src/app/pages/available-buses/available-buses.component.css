@@ -8,6 +8,31 @@
     z-index: 2;
 }
 
+.navbar-brand{
+  display: flex;
+}
+
+.navbar-brand h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-brand img{
+  
+  animation: move 1s linear infinite;
+}
+
+@keyframes move{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+  
+}
+
 .search-con{
     background: black;
     
@@ -40,9 +65,8 @@ header h1{
     padding: 30px;
     width: 100%;
     border-radius: 20px;
-    
-    position:absolute;
-    top: 100px;
+    margin-top: 80px;
+  
     border: 5px solid rgb(192, 248, 192);
     
 

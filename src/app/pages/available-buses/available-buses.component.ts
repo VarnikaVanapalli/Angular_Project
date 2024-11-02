@@ -13,13 +13,14 @@ import { EnjoyAppComponent } from "../enjoy-app/enjoy-app.component";
 import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { MovingbusComponent } from "../movingbus/movingbus.component";
 
 
 
 @Component({
   selector: 'app-available-buses',
   standalone: true,
-  imports: [ AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule],
+  imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, FooterComponent, MovingbusComponent],
   templateUrl: './available-buses.component.html',
   styleUrl: './available-buses.component.css'
 })
