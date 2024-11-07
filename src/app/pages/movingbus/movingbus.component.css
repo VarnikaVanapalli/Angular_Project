@@ -18,22 +18,22 @@
 }
 
 #id2{
-    background: rgb(210, 210, 0);
-    border: 1px solid rgb(251, 255, 0);
+    background: linear-gradient(360deg,rgb(185, 185, 167),rgb(210, 210, 0)) ;
+    border: 1px solid rgb(16, 16, 16);
     animation: move 4.5s linear infinite;
 }
 
 #id3{
-    background: rgb(95, 210, 0);
-    border: 1px solid rgb(111, 255, 0);
+    background: linear-gradient(360deg,rgb(141, 147, 132),rgb(133, 210, 0)) ;
+    border: 1px solid rgb(15, 16, 15);
     animation: move 5.8s linear infinite;
 }
 
 .bus{
     width: 150px;
     height: 50px;
-    background: rgb(165, 9, 9);
-    border: 1px solid red;
+    background:linear-gradient(360deg,rgb(93, 86, 86),rgb(165, 9, 9)) ;
+    border: 1px solid rgb(14, 13, 13);
     border-radius: 5px 15px 5px 15%;
     padding: 5px;
     display: flex;
@@ -52,8 +52,8 @@
         opacity: 1;
     }
     50%{
-        /* left: 50%; */
-        transform: translateX(50%);
+        left: 50%;
+        /* transform: translateX(50%); */
         opacity: 1;
 
     }
@@ -61,8 +61,8 @@
         opacity: 1;
     }
     100%{
-        /* left: 70%; */
-        transform: translateX(70%);
+        left: 70%;
+        /* transform: translateX(70%); */
         opacity: 0;
     }
 }
@@ -80,7 +80,7 @@
     margin-right: -10px;
     background: rgb(0, 0, 0);
     border-radius: 0 15px 0 0;
-    border: 1px solid rgb(101, 98, 98);
+    border: 1px solid rgb(15, 14, 14);
 }
 
 .wheel1 img{
