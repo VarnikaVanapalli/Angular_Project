@@ -127,7 +127,33 @@
       <button class="btn btn-danger" [routerLink]="['/book-bus']">Book Seat</button>
     </div>
     <div class="right">
-      <p>right</p>
+      <h4>Bus Seats</h4>
+      <div class="bus-layout">
+        <div
+          *ngFor="let seat of seats; let i = index"
+          class="seat"
+          [class.selected]="seat.selected"
+          [class.unselected]="!seat.selected"
+          (click)="toggleSeat(i)"
+        >
+          {{ seat.number }}
+        </div>
+      </div>
+      <div class="seat-info">
+        <p>Total Seats: {{ seats.length }}</p>
+        <p>Selected Seats: {{ selectedSeatsCount }}</p>
+        <p>Remaining Seats: {{ seats.length - selectedSeatsCount }}</p>
+      </div>
+      <div class="seat-info">
+        <p>Total Seats: {{ seats.length }}</p>
+        <p>Selected Seats: {{ selectedSeatsCount }}</p>
+        <p>Remaining Seats: {{ seats.length - selectedSeatsCount }}</p>
+        <p *ngIf="selectedSeatsCount > 0">
+          Chosen Seats: {{ selectedSeatNumbers.join(', ') }}
+        </p>
+      </div>
+      
     </div>
+    
   </div>
 </section>
