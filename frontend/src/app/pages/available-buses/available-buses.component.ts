@@ -34,22 +34,23 @@ export class AvailableBusesComponent implements OnInit {
   date: Date |undefined;
   busList: any[]=[];
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
+    private route: ActivatedRoute,
+    
     private locationService: LocationService,
     private busService: BusService
   ) {}
   ngOnInit(): void {
     this.getAllLocations();
     this.route.queryParams.subscribe(params => {
-      this.fromLocation = params['fromLocation'];
-      this.toLocation = params['toLocation'];
-      this.date = params['date'];
+      this.fromLocation = +params['selectedFromLocation'];
+      this.toLocation = +params['selectedToLocation'];
+      this.date = params['selectedDate'];
 
-      // Fetch buses based on the query params
-      this.fetchAvailableBuses();
-      
-  });
+      if (this.fromLocation && this.toLocation) {
+        this.fetchAvailableBuses();
+      }
+    });
 }
   fetchAvailableBuses() {
     this.busService.getBuses(this.fromLocation, this.toLocation).subscribe(

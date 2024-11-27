@@ -51,7 +51,7 @@
   <!-- Search Form -->
   <section class="search-sec">
     <div class="container mt-5 d-flex justify-content-center">
-      <form class="search-form d-flex align-items-center shadow-lg">
+      <form class="search-form d-flex align-items-center shadow-lg" (ngSubmit)="navigateToAvailableBuses()">
         <div class="row w-100 text-white">
           <!-- From Location -->
           <div class="col-md-3 d-flex align-items-center">
@@ -108,7 +108,8 @@
             <button 
               type="button" 
               class="btn btn-light w-100" 
-               [routerLink]="['/available-buses']"  >
+              (click)="navigateToAvailableBuses()"
+               >
               Search Buses
             </button>
           </div>
