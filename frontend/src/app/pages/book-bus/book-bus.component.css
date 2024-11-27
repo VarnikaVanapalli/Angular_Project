@@ -2,7 +2,8 @@
     /* display: flex;
     top: 0;
     width: 100%;
-    background-color: rgb(235, 237, 235);
+    background-color: rgb(188, 188, 188,0.7);
+    
     padding: 10px;
     position: fixed;
     z-index: 2; */
@@ -10,7 +11,7 @@
     border-radius: 50px;
     top: 0;
     width: 95%;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(192, 192, 192, 0.3);
     backdrop-filter: blur(15px);
     padding: 15px;
     margin: 10px auto;
@@ -69,14 +70,13 @@ header h1{
 }
 
 .search-form {
-    background-color:rgb(246, 230, 209,0.9); /* Background color similar to the image */
+    background-color:antiquewhite; /* Background color similar to the image */
     backdrop-filter: blur(5px);
     padding: 30px;
     width: 100%;
-    border-radius: 20px;
-    margin-top: 20px;
-  
-    border: 1px solid rgb(11, 11, 11);
+    border-radius: 30px;
+    margin-top: -50px;
+    /* border: 5px solid rgb(192, 248, 192); */
     
 
   }
@@ -97,7 +97,7 @@ header h1{
 
 .ab-con{
     border: 1px solid black;
-    background: rgb(255, 230, 197,0.9);
+    background: rgb(255, 230, 197);
     margin: 180px auto;
     width: 80%;
     padding: 20px;
@@ -158,21 +158,65 @@ ul li:hover{
  
 
 .bg-con{
-  background: linear-gradient(rgba(8,0,58,0.7),rgba(8,0,58,0.7));
+    background: linear-gradient(rgba(8,0,58,0.7),rgba(8,0,58,0.7));
 
 }
 
 .bg-image{
-  
-  height: 100%;
-  width: 100%;
-  float: left;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: none;
-  position: fixed;
-  object-fit: cover;
-  z-index: -1;
+    
+    height: 100%;
+    width: 100%;
+    float: left;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: none;
+    position: fixed;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.bookbus{
+  width: 90%;
+  background: rgb(132, 132, 132);
+  margin: 20px auto;
+  min-height: 65vh;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.bookbus .left{
+  border: 1px solid black;
+  width: 50%;
+  margin: 10px;
+  background: rgb(255, 255, 254);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookbus .left .name{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+}
+
+.bookbus .left .info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  font-size: 20px;
+}
+
+.bookbus .right{
+  border: 1px solid black;
+  width: 50%;
+  margin: 10px;
 }
