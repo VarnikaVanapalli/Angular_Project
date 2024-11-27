@@ -12,11 +12,14 @@ import { FooterComponent } from "../footer/footer.component";
   selector: 'app-search',
   standalone: true,
   imports: [
-    FormsModule, 
+    FormsModule,
     CommonModule,
     RouterLink,
-    RouterModule
-  ],
+    RouterModule,
+    TrendingPackagesComponent,
+    EnjoyAppComponent,
+    FooterComponent
+],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
