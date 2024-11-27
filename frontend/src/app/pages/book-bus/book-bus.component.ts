@@ -50,7 +50,7 @@ export class BookBusComponent {
   }
   onSearch(){
     const {fromLocation,toLocation,travelDate} = this.searchObj;
-    this.masterSrv.searchBus(fromLocation,toLocation,travelDate).subscribe((res:any)=>{
+    this.masterSrv.searchBus(fromLocation,toLocation).subscribe((res:any)=>{
       this.busList=res;
     })
   }
