@@ -95,6 +95,39 @@
 
 <section>
     <div class="bg-con">
-        <img src="doubledeck.jpg" alt="" class="bg-image"/>
+        <img src="japan-bus3.jpg" alt="" class="bg-image"/>
     </div>
+</section>
+
+<section>
+  <div class="bookbus">
+    <div class="left">
+      <div class="name">
+        <h5>Bharathi</h5>
+        <p>A1 travels</p>
+      </div>
+      <div class="info">
+        <p class="card-text">Departure:</p>
+        <p class="card-text"><strong>{{"12.00" |  date:"hh:mm:ss"}}</strong></p>
+      </div>
+      <div class="info">
+        <p class="card-text">Duration:</p>
+        <p class="card-text"><strong>16 hr</strong></p>             
+      </div>
+      <div class="info">
+        <p class="card-text">Arrival:</p>
+        <p class="card-text"><strong>{{"9.00" |  date:"hh:mm:ss"}}</strong></p>
+        <!-- <p class="text-danger">{{"8.00" |  date:'dd-MM-yy'}}</p> -->
+      </div>
+      <div class="info">
+        <p class="card-text">Price:</p>
+        <p class="card-text"><strong>INR 700</strong></p>
+        
+      </div>
+      <button class="btn btn-danger" [routerLink]="['/book-bus']">Book Seat</button>
+    </div>
+    <div class="right">
+      <p>right</p>
+    </div>
+  </div>
 </section>
