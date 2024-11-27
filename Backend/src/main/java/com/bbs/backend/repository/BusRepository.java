@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface BusRepository extends JpaRepository<Bus, Long> {
 
-    // Find buses by the 'from' and 'to' locations
-    List<Bus> findByFromLocationAndToLocation(String fromLocation, String toLocation);
+    // Method to fetch buses by from_location and to_location
+    List<Bus> findByFromLocationAndToLocation(int fromLocation, int toLocation);
 }

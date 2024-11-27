@@ -1,21 +1,32 @@
 package com.bbs.backend.controller;
 
 import com.bbs.backend.model.Bus;
-import com.bbs.backend.repository.BusRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.bbs.backend.service.BusService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/buses")
 public class BusController {
 
-    @Autowired
-    private BusRepository busRepository;
+    private final BusService busService;
 
-    @GetMapping("/buses")
-    public List<Bus> getBuses(@RequestParam String fromLocation, @RequestParam String toLocation) {
-        return busRepository.findByFromLocationAndToLocation(fromLocation, toLocation);
+    // Constructor injection for BusService
+    public BusController(BusService busService) {
+        this.busService = busService;
+    }
+
+    @GetMapping
+    public List<Bus> getBusesByLocation(
+            @RequestParam int fromLocation, 
+            @RequestParam int toLocation) {
+                List<Bus> buses = busService.getBusesByLocation(fromLocation, toLocation);
+                return buses;
     }
 }
+
+
