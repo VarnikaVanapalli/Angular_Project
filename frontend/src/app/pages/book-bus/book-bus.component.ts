@@ -55,4 +55,22 @@ export class BookBusComponent {
     })
   }
 
+  seats = Array.from({ length: 40 }, (_, i) => ({
+    number: i + 1, // Seat numbers from 1 to 40
+    selected: false, // Initial state is unselected
+  }));
+
+  get selectedSeatsCount(): number {
+    return this.seats.filter((seat) => seat.selected).length;
+  }
+
+  get selectedSeatNumbers(): number[] {
+    return this.seats
+      .filter((seat) => seat.selected)
+      .map((seat) => seat.number);
+  }
+
+  toggleSeat(index: number): void {
+    this.seats[index].selected = !this.seats[index].selected;
+  }
 }
