@@ -20,28 +20,28 @@ export class BookingComponent {
   constructor(private activatedRoute : ActivatedRoute,private masterService : MasterService){
     this.activatedRoute.params.subscribe((res:any)=> {
       this.scheduleId=res.id;
-      this.getScheduleDetailById();
-      this.getBookedSeats();
+      // this.getScheduleDetailById();
+      // this.getBookedSeats();
     })
   }
-  getScheduleDetailById(){
-    this.masterService.getScheduleById(this.scheduleId).subscribe((res:any)=>{
-      debugger;
-      this.scheduleData=res;
-      for (let index = 1; index <= this.scheduleData.totalSeats; index++) {
-        this.seatArray.push(index);
+  // getScheduleDetailById(){
+  //   this.masterService.getScheduleById(this.scheduleId).subscribe((res:any)=>{
+  //     debugger;
+  //     this.scheduleData=res;
+  //     for (let index = 1; index <= this.scheduleData.totalSeats; index++) {
+  //       this.seatArray.push(index);
         
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 
-  getBookedSeats(){
-    this.masterService.getBookedSeats(this.scheduleId).subscribe((res:any)=>{
-      debugger;
-      this.bookedSeatsArray=res;
+  // getBookedSeats(){
+  //   this.masterService.getBookedSeats(this.scheduleId).subscribe((res:any)=>{
+  //     debugger;
+  //     this.bookedSeatsArray=res;
       
-    })
-  }
+  //   })
+  // }
 
 
   checkIfSeatBooked(seatNo: number){

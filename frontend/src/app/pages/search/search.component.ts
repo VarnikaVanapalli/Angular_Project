@@ -1,57 +1,58 @@
-import { Component , inject , OnInit} from '@angular/core';
-import { MasterService } from '../../service/master.service';
-import { Observable } from 'rxjs';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink,RouterOutlet,RouterModule,Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
-import { LoginPageComponent } from '../login-page/login-page.component';
-import { BusSeatsComponent } from "../bus-seats/bus-seats.component";
+import { CommonModule } from '@angular/common'; // Import CommonModule for Angular directives
+import { RouterLink, RouterModule } from '@angular/router';
+import { BusService } from '../../service/bus.service';
+import { LocationService } from '../../service/location.service';
 import { TrendingPackagesComponent } from "../trending-packages/trending-packages.component";
-import { FooterComponent } from "../footer/footer.component";
 import { EnjoyAppComponent } from "../enjoy-app/enjoy-app.component";
+import { FooterComponent } from "../footer/footer.component";
+
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, LoginPageComponent, BusSeatsComponent, TrendingPackagesComponent, FooterComponent, EnjoyAppComponent],
+  imports: [
+    FormsModule, 
+    CommonModule,
+    RouterLink,
+    RouterModule
+  ],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  // constructor(private router: Router) {}
+  locations: { id: number, name: string }[] = []; // Locations should be an array of objects with id and name
+  buses: any[] = [];
+  fromLocation: number = 0;  // Store location ids
+  toLocation: number = 0;    // Store location ids
+  travelDate: Date | undefined;
 
-  // // Method to navigate to the login page
-  // goToLogin() {
-  //   this.router.navigate(['/login-page']);
-  // }
+  constructor(
+    private locationService: LocationService,
+    private busService: BusService
+  ) {}
 
-  location$: Observable<any[]> = new Observable<any[]>;
-
-  masterSrv =inject(MasterService);
-  busList: any[]=[];
-  searchObj:any={
-    fromLocation:'',
-    toLocation:'',
-    travelDate:''
-  }
   ngOnInit(): void {
-      this.getAllLocations();
-  }
-
-  getAllLocations(){
-    this.location$=this.masterSrv.getLocations();
-
+    this.locationService.getLocations().subscribe({
+      next: (data) => {
+        console.log('Locations from backend:', data); // Log the response from the backend
+        this.locations = data; // Assuming the response is an array of objects with { id, name }
+      },
+      error: (err) => {
+        console.error('Error fetching locations:', err); // Log any error
+      }
+    });
   }
   
-  isHidden: boolean = true;
-  toggleVisibility() {
-    this.isHidden = false;  // Toggle visibility
-  }
-  onSearch(){
-    const {fromLocation,toLocation,travelDate} = this.searchObj;
-    this.masterSrv.searchBus(fromLocation,toLocation,travelDate).subscribe((res:any)=>{
-      this.busList=res;
-    })
+
+  onSearch(): void {
+    // When the user submits the search, fetch the buses based on the selected locations
+    if (this.fromLocation && this.toLocation) {
+      this.busService
+        .getBuses(this.fromLocation, this.toLocation)
+        .subscribe((data) => {
+          this.buses = data;
+        });
+    }
   }
 }
-

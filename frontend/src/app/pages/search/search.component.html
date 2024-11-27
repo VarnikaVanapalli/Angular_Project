@@ -1,40 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light" >
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
     <a class="navbar-brand" href="#">
       <img src="tyre.png" alt="abhibus" class="logoimage">
-       <h1>BusFever</h1>
+      <h1>BusFever</h1>
     </a>
-    <!-- <div class="d-flex flex-column justify-content-center">
-      <span>Trusted byss</span>
-      <span class="font-weight-bold">5 Crore+ Travellers</span>
-    </div> -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-bus"></i>Buses</a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-train"></i>Trains</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-airplane"></i>Flights</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-building"></i>Hotels</a>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-gift"></i>Offers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-ticket-perforated"></i>Track Ticket</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-headset"></i>Need Help?</a>
-        </li>
-        
+        <li class="nav-item"><a class="nav-link" href="#"><i class="icon bi bi-bus"></i>Buses</a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="icon bi bi-gift"></i>Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="icon bi bi-ticket-perforated"></i>Track Ticket</a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="icon bi bi-headset"></i>Need Help?</a></li>
       </ul>
     </div>
     <div>
@@ -42,116 +20,131 @@
     </div>
   </div>
 </nav>
+
 <div class="bg-con">
   <img src="japan-bus.jpg" alt="" class="bg-image"/>
 </div>
 
 <div class="container">
-    <header class="heading">
-        <h1 class="">Bus Booking System</h1>
-    </header>
+  <header class="heading">
+    <h1 class="">Bus Booking System</h1>
+  </header>
 
-    <!-- Search Form -->
-    <section class="search-sec">
-        <div class="container mt-5 d-flex justify-content-center">
-            <form class="search-form d-flex align-items-center shadow-lg">
-              <div class=" row w-100 text-white">
-                <div class=" col-md-3 d-flex align-items-center">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
-                    <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
-                      <option value="" disabled selected>Select from Available Locations</option>
-                      @for (item of location$ |async; track $index) {
-                        <option [value]="item.locationId">{{item.locationName}}</option>
-                      }
-                    </select>
+  <!-- Search Form -->
+  <section class="search-sec">
+    <div class="container mt-5 d-flex justify-content-center">
+      <form class="search-form d-flex align-items-center shadow-lg">
+        <div class="row w-100 text-white">
+          <!-- From Location -->
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
+              <select 
+                class="form-select" 
+                name="fromLocation" 
+                [(ngModel)]="fromLocation">
+                <option value="" disabled selected>Select From Location</option>
+                <option *ngFor="let location of locations" [value]="location.id">
+                  {{ location.name }}
+                </option>
+              </select>
+            </div>
+          </div>
 
-                  </div>
+          <!-- Arrow Icon -->
+          <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
+            <i class="bi bi-arrow-left-right fs-4 text-black"></i>
+          </div>
+
+          <!-- To Location -->
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+              <select 
+                class="form-select" 
+                name="toLocation" 
+                [(ngModel)]="toLocation">
+                <option value="" disabled selected>Select To Location</option>
+                <option *ngFor="let location of locations" [value]="location.id">
+                  {{ location.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Travel Date -->
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+              <input 
+                type="date" 
+                class="form-control" 
+                name="travelDate" 
+                [(ngModel)]="travelDate" 
+                placeholder="Date">
+            </div>
+          </div>
+
+          <!-- Search Button -->
+          <div class="col-md-2 text-center">
+            <button 
+              type="button" 
+              class="btn btn-light w-100" 
+              (click)="onSearch()" [routerLink]="['/available-buses']" >
+              Search Buses
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Buses List -->
+  <section id="buses-list" class="my-4" *ngIf="buses && buses.length > 0">
+    <h2>Available Buses</h2>
+    <div class="row" *ngFor="let item of buses">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+              <h5 class="card-title">{{ item.busName }}</h5>
+              <p class="card-text">{{ item.vendorName }}</p>
+            </div>
+            <div class="col-md-9">
+              <div class="card-body row">
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.departureTime }}</strong></p>
+                  <p class="card-text">Departure</p>
                 </div>
-                <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
-                  <i class="bi bi-arrow-left-right fs-4 text-black"></i>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.duration }}</strong></p>
+                  <p class="card-text">Duration</p>
                 </div>
-                <div class="col-md-3 d-flex align-items-center">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-                    <select class="form-select" name="toLocation" [(ngModel)]="searchObj.toLocation">
-                      <option  value="" disabled selected>Select from Available Locations</option>
-                      @for (item of location$ |async; track $index) {
-                        <option [value]="item.locationId">{{item.locationName}}</option>
-                      }
-                    </select>
-                  </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.arrivalTime }}</strong></p>
+                  <p class="card-text">Arrival</p>
+                  <p class="text-danger">{{ item.arrivalDate }}</p>
                 </div>
-                <div class="col-md-3 d-flex align-items-center">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                    <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.travelDate" placeholder="Date">
-                  </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.rating }}</strong> ⭐</p>
+                  <p class="card-text">{{ item.ratingsCount }} Ratings</p>
                 </div>
-                <div class="col-md-2 text-center">
-                  <!-- <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button> -->
-                  <a class="btn btn-light  w-100" [routerLink]="['/available-buses']">Search Buses</a>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>INR {{ item.price }}</strong></p>
+                  <p class="card-text">
+                    {{ item.availableSeats }} Seats available out of {{ item.totalSeats }}
+                  </p>
+                </div>
+                <div class="col-md-2 text-end">
+                  <button class="btn btn-danger" [routerLink]="['/booking', item.scheduleId]">Book Seat</button>
                 </div>
               </div>
-            </form>
-          </div>
-    </section>
-
-    <!-- Buses List -->
-    <section id="buses-list" class="my-4">
-      <div [ngClass]="{ 'hidden': isHidden, 'visible': !isHidden }">
-        <h2>Available Buses</h2>
-      </div>
-        
-        @for (item of busList; track $index) {
-
-          <div class="row">
-            <div class="col-12">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="card-title">{{item.busName}}</h5>
-                        <p class="card-text">{{item.vendorName}}</p>
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-body row">
-                          <div class="col-md-2">
-                            <p class="card-text"><strong>{{item.departureTime |  date:"hh:mm:ss"}}</strong></p>
-                            <p class="card-text">Departure</p>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-text"><strong>16 hr</strong></p>
-                            <p class="card-text">Duration</p>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-text"><strong>{{item.arrivalTime |  date:"hh:mm:ss"}}</strong></p>
-                            <p class="card-text">Arrival</p>
-                            <p class="text-danger">{{item.arrivalTime |  date:'dd-MM-yy'}}</p>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-text"><strong>4.5</strong> ⭐</p>
-                            <p class="card-text">567 Ratings</p>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-text"><strong>INR {{item.price}}</strong></p>
-                            <p class="card-text">{{item.availableSeats}} Seats available out of {{item.totalSeats}}</p>
-                          </div>
-                          <div class="col-md-2 text-end">
-                            <button class="btn btn-danger" [routerLink]="['/booking/',item.scheduleId]">Book Seat</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
             </div>
+          </div>
         </div>
-
-        }
-        
-    </section>
+      </div>
     </div>
+  </section>
+</div>
 
-    <app-trending-packages></app-trending-packages>
-    <app-enjoy-app></app-enjoy-app>
-    <app-footer></app-footer>
-    <router-outlet /> 
+<router-outlet />
