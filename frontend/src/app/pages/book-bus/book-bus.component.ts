@@ -1,3 +1,5 @@
+
+import { AvailableBusesComponent } from '../available-buses/available-buses.component';
 import { Component , inject , OnInit} from '@angular/core';
 import { MasterService } from '../../service/master.service';
 import { Observable } from 'rxjs';
@@ -14,19 +16,16 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { MovingbusComponent } from "../movingbus/movingbus.component";
-import { BookBusComponent } from '../book-bus/book-bus.component';
-
 
 
 @Component({
-  selector: 'app-available-buses',
+  selector: 'app-book-bus',
   standalone: true,
   imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, FooterComponent, MovingbusComponent,BookBusComponent],
-  templateUrl: './available-buses.component.html',
-  styleUrl: './available-buses.component.css'
+  templateUrl: './book-bus.component.html',
+  styleUrl: './book-bus.component.css'
 })
-export class AvailableBusesComponent implements OnInit {
-
+export class BookBusComponent {
   location$: Observable<any[]> = new Observable<any[]>;
 
   masterSrv =inject(MasterService);
@@ -55,5 +54,5 @@ export class AvailableBusesComponent implements OnInit {
       this.busList=res;
     })
   }
-}
 
+}

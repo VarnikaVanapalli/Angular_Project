@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-light" >
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="tyre.png" alt="abhibus" class="logoimage">
+         <h1>BusFever</h1>
+      </a>
+      <!-- <div class="d-flex flex-column justify-content-center">
+        <span>Trusted byss</span>
+        <span class="font-weight-bold">5 Crore+ Travellers</span>
+      </div> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-bus"></i>Buses</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-train"></i>Trains</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-airplane"></i>Flights</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-building"></i>Hotels</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-gift"></i>Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-ticket-perforated"></i>Track Ticket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-headset"></i>My Bookings</a>
+          </li>
+          
+        </ul>
+      </div>
+      <div>
+        <a class="login-btn" [routerLink]="['/login-page']">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+
+    <!-- Search Form -->
+    <section class="search-sec">
+        <div class="container mt-5 d-flex justify-content-center">
+            <form class="search-form d-flex align-items-center shadow-lg">
+              <div class=" row w-100 text-white">
+                <div class=" col-md-3 d-flex align-items-center">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
+                    <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
+                      <option value="" disabled selected>Select from Available Locations</option>
+                      @for (item of location$ |async; track $index) {
+                        <option [value]="item.locationId">{{item.locationName}}</option>
+                      }
+                    </select>
+
+                  </div>
+                </div>
+                <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
+                  <i class="bi bi-arrow-left-right fs-4 text-black"></i>
+                </div>
+                <div class="col-md-3 d-flex align-items-center">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+                    <select class="form-select" name="toLocation" [(ngModel)]="searchObj.toLocation">
+                      <option  value="" disabled selected>Select from Available Locations</option>
+                      @for (item of location$ |async; track $index) {
+                        <option [value]="item.locationId">{{item.locationName}}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3 d-flex align-items-center">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                    <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.travelDate" placeholder="Date">
+                  </div>
+                </div>
+                <div class="col-md-2 text-center">
+                  <!-- <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button> -->
+                  <a class="btn btn-light  w-100" [routerLink]="['/available-buses']">Search Buses</a>
+                </div>
+              </div>
+            </form>
+          </div>
+    </section>
+</div>
+
+<section>
+    <div class="bg-con">
+        <img src="doubledeck.jpg" alt="" class="bg-image"/>
+    </div>
+</section>

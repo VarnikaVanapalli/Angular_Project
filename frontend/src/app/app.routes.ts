@@ -5,6 +5,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { BusSeatsComponent } from './pages/bus-seats/bus-seats.component';
 import { AvailableBusesComponent } from './pages/available-buses/available-buses.component';
 import { MovingbusComponent } from './pages/movingbus/movingbus.component';
+import { BookBusComponent } from './pages/book-bus/book-bus.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,10 @@ export const routes: Routes = [
     {
         path:'movingbus',
         component:MovingbusComponent
+    },
+    {
+        path:'book-bus',
+        component:BookBusComponent
     }
 
 ];
