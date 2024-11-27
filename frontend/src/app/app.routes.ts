@@ -19,10 +19,6 @@ export const routes: Routes = [
         component:SearchComponent
     },
     {
-        path:'booking/:id',
-        component:BookingComponent
-    },
-    {
         path:'login-page',
         component:LoginPageComponent
     },

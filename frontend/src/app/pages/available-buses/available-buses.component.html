@@ -54,7 +54,7 @@
                 <div class=" col-md-3 d-flex align-items-center">
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
-                    <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
+                    <select class="form-select" name="fromLocation" [(ngModel)]="fromLocation">
                       <option value="" disabled selected>Select from Available Locations</option>
                       @for (item of location$ |async; track $index) {
                         <option [value]="item.locationId">{{item.locationName}}</option>
@@ -69,7 +69,7 @@
                 <div class="col-md-3 d-flex align-items-center">
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-                    <select class="form-select" name="toLocation" [(ngModel)]="searchObj.toLocation">
+                    <select class="form-select" name="toLocation" [(ngModel)]="toLocation">
                       <option  value="" disabled selected>Select from Available Locations</option>
                       @for (item of location$ |async; track $index) {
                         <option [value]="item.locationId">{{item.locationName}}</option>
@@ -80,7 +80,7 @@
                 <div class="col-md-3 d-flex align-items-center">
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                    <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.travelDate" placeholder="Date">
+                    <input type="date" class="form-control" name="travelDate"placeholder="Date">
                   </div>
                 </div>
                 <div class="col-md-2 text-center">

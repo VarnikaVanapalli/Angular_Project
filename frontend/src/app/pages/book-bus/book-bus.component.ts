@@ -1,6 +1,8 @@
 
 import { AvailableBusesComponent } from '../available-buses/available-buses.component';
 import { Component , inject , OnInit} from '@angular/core';
+import { LocationService } from '../../service/location.service';
+import { BusService } from '../../service/bus.service';
 import { MasterService } from '../../service/master.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
@@ -28,19 +30,23 @@ import { MovingbusComponent } from "../movingbus/movingbus.component";
 export class BookBusComponent {
   location$: Observable<any[]> = new Observable<any[]>;
 
-  masterSrv =inject(MasterService);
+  
   busList: any[]=[];
   searchObj:any={
     fromLocation:'',
     toLocation:'',
     travelDate:''
   }
+  constructor(
+    private locationService: LocationService,
+    private busService: BusService
+  ) {}
   ngOnInit(): void {
       this.getAllLocations();
   }
 
   getAllLocations(){
-    this.location$=this.masterSrv.getLocations();
+    this.location$=this.locationService.getLocations();
 
   }
   
@@ -50,7 +56,7 @@ export class BookBusComponent {
   }
   onSearch(){
     const {fromLocation,toLocation,travelDate} = this.searchObj;
-    this.masterSrv.searchBus(fromLocation,toLocation).subscribe((res:any)=>{
+    this.busService. getBuses(fromLocation,toLocation).subscribe((res:any)=>{
       this.busList=res;
     })
   }

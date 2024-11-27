@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule for Angular directives
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { BusService } from '../../service/bus.service';
 import { LocationService } from '../../service/location.service';
 import { TrendingPackagesComponent } from "../trending-packages/trending-packages.component";
@@ -24,6 +24,9 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+   // Bind this to the date picker input
+
+
   locations: { id: number, name: string }[] = []; // Locations should be an array of objects with id and name
   buses: any[] = [];
   fromLocation: number = 0;  // Store location ids
@@ -31,10 +34,10 @@ export class SearchComponent implements OnInit {
   travelDate: Date | undefined;
 
   constructor(
+    private router: Router,
     private locationService: LocationService,
     private busService: BusService
   ) {}
-
   ngOnInit(): void {
     this.locationService.getLocations().subscribe({
       next: (data) => {
@@ -44,6 +47,16 @@ export class SearchComponent implements OnInit {
       error: (err) => {
         console.error('Error fetching locations:', err); // Log any error
       }
+    });
+  }
+  navigateToAvailableBuses() {
+    const selectedFromLocation = this.fromLocation;
+    const selectedToLocation=this.toLocation;
+    const selectedDate=this.travelDate;
+
+    // Navigate to the available-buses page, passing selected values as query params
+    this.router.navigate(['/available-buses'], {
+      queryParams: { selectedFromLocation, selectedToLocation, selectedDate }
     });
   }
   
