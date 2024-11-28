@@ -206,7 +206,7 @@ ul li:hover{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 80vh;
+  max-height: 100vh;
   margin-top: 90px;
 }
 
@@ -257,7 +257,7 @@ ul li:hover{
   grid-template-columns: repeat(4, 1fr);
   gap: 5px;
   margin: 20px 0;
-  max-height: 90vh;
+  max-height: 120vh;
   padding: 40px;
   
   /* background: url("../../../../public/bus-top.png");

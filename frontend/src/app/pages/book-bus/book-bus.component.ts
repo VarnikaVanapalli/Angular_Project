@@ -1,13 +1,13 @@
 
 import { AvailableBusesComponent } from '../available-buses/available-buses.component';
-import { Component , inject , OnInit} from '@angular/core';
+import { ChangeDetectorRef, Component , inject , OnInit} from '@angular/core';
 import { LocationService } from '../../service/location.service';
 import { BusService } from '../../service/bus.service';
 import { MasterService } from '../../service/master.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink,RouterOutlet,RouterModule,Router } from '@angular/router';
+import { RouterLink,RouterOutlet,RouterModule,Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { LoginPageComponent } from '../login-page/login-page.component';
 import { BusSeatsComponent } from "../bus-seats/bus-seats.component";
@@ -15,7 +15,7 @@ import { TrendingPackagesComponent } from "../trending-packages/trending-package
 import { FooterComponent } from "../footer/footer.component";
 import { EnjoyAppComponent } from "../enjoy-app/enjoy-app.component";
 import { NgModule } from '@angular/core';
-
+import moment from 'moment';
 import { BrowserModule } from '@angular/platform-browser';
 import { MovingbusComponent } from "../movingbus/movingbus.component";
 
@@ -30,44 +30,61 @@ import { MovingbusComponent } from "../movingbus/movingbus.component";
 export class BookBusComponent {
   location$: Observable<any[]> = new Observable<any[]>;
 
-  
+  busId:number|null=null;
   busList: any[]=[];
-  searchObj:any={
-    fromLocation:'',
-    toLocation:'',
-    travelDate:''
-  }
+  busDetails: any;
+  pricePerSeat:number=0;
+  bookSeats: number=0;
+  totalSeats:number=0;
+  seats: any[] = [];
+  duration: string="";
   constructor(
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute,
     private locationService: LocationService,
     private busService: BusService
-  ) {}
-  ngOnInit(): void {
-      this.getAllLocations();
+  ) {
+    
+  }
+  ngOnInit() {
+      this.busId = Number(this.route.snapshot.paramMap.get('id'));
+    
+    if (this.busId) {
+      // Fetch the bus details using the bus ID
+      this.busService.getBusDetails(this.busId).subscribe(data => {
+        this.busDetails = data;
+        console.log(this,this.busDetails);
+      });
+    }
+    this.pricePerSeat = this.busDetails.price;
+    this.totalSeats=this.busDetails.totalSeats;
+    this.bookSeats=this.busDetails.totalSeats - this.busDetails.availableSeats;
+    const departureTime = new Date('1970-01-01T' + this.busDetails.departureTime + 'Z');
+    const arrivalTime = new Date('1970-01-01T' + this.busDetails.arrivalTime + 'Z');
+
+    const durationMs = arrivalTime.getTime() - departureTime.getTime();
+    const durationMinutes = Math.floor(durationMs / 60000);  // Convert milliseconds to minutes
+    const durationHours = Math.floor(durationMinutes / 60);
+    const durationRestMinutes = durationMinutes % 60;
+
+    this.duration = `${durationHours} h ${durationRestMinutes} min`;
+
+    this.seats = Array.from({ length: this.busDetails.totalSeats }, (_, i) => ({
+      number: i + 1, // Seat numbers from 1 to totalSeats
+      selected: false, // Initial state is unselected
+      isBooked: i < (this.busDetails.totalSeats - this.busDetails.availableSeats), // Mark seats as booked based on availableSeats
+    }));
+    console.log(this.totalSeats,this.pricePerSeat);
+    this.cdr.detectChanges();
+
   }
 
-  getAllLocations(){
-    this.location$=this.locationService.getLocations();
-
-  }
   
-  isHidden: boolean = true;
-  toggleVisibility() {
-    this.isHidden = false;  // Toggle visibility
-  }
-  onSearch(){
-    const {fromLocation,toLocation,travelDate} = this.searchObj;
-    this.busService. getBuses(fromLocation,toLocation).subscribe((res:any)=>{
-      this.busList=res;
-    })
-  }
+  
 
-  seats = Array.from({ length: 39 }, (_, i) => ({
-    number: i + 1, // Seat numbers from 1 to 40
-    selected: false, // Initial state is unselected
-    isBooked: Math.random() < 0.3, // Randomly mark ~30% of seats as already booked
-  }));
+  
 
-  pricePerSeat = 700; // Price per seat in INR
+   // Price per seat in INR
 
   // Getters for dynamic counts
   get selectedSeatsCount(): number {

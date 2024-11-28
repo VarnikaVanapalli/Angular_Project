@@ -34,7 +34,7 @@ export const routes: Routes = [
         component:MovingbusComponent
     },
     {
-        path:'book-bus',
+        path:'book-bus/:id',
         component:BookBusComponent
     }
 

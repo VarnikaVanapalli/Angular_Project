@@ -17,4 +17,7 @@ export class BusService {
       .set('toLocation', toLocation);
     return this.http.get<any[]>(this.apiUrl, { params });
   }
+  getBusDetails(busId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${busId}`);
+  }
 }

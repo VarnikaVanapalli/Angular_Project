@@ -104,26 +104,25 @@
     <div class="left">
       <div class="left-border">
         <div class="name">
-          <h5>Bharathi</h5>
-          <p>A1 travels</p>
+          <h5><b>{{busDetails.busName}}</b></h5>
         </div>
         <div class="info">
           <p class="card-text">Departure:</p>
-          <p class="card-text"><strong>{{"12.00" |  date:"hh:mm:ss"}}</strong></p>
+          <p class="card-text"><strong>{{busDetails.departureTime}}</strong></p>
         </div>
         <div class="info">
           <p class="card-text">Duration:</p>
-          <p class="card-text"><strong>16 hr</strong></p>
+          <p class="card-text"><strong>{{duration}}</strong></p>
         </div>
         <div class="info">
           <p class="card-text">Arrival:</p>
-          <p class="card-text"><strong>{{"9.00" |  date:"hh:mm:ss"}}</strong></p>
+          <p class="card-text"><strong>{{busDetails.arrivalTime}}</strong></p>
           <!-- <p class="text-danger">{{"8.00" |  date:'dd-MM-yy'}}</p> -->
         </div>
         <div class="info">
           
           <p  class="text-success">
-            Total Price: INR {{ totalPrice }}
+            Total Price: INR {{ busDetails.price }}
           </p>
         </div>
         <button class="btn btn-danger" [routerLink]="['/book-bus']">Book Seat</button>
@@ -150,10 +149,10 @@
       </div>
       
       <div class="seat-info">
-        <p>Total Seats: {{ seats.length }}</p>
-        <p>Available Seats: {{ availableSeatsCount }}</p>
+        <p>Total Seats: {{ busDetails.totalSeats }}</p>
+        <p>Available Seats: {{busDetails.availableSeats }}</p>
         <p>Selected Seats: {{ selectedSeatsCount }}</p>
-        <p>Remaining Seats: {{ seats.length - selectedSeatsCount }}</p>
+        <p>Remaining Seats: {{ availableSeatsCount - selectedSeatsCount }}</p>
         <p >
           Chosen Seats: {{ selectedSeatNumbers.join(', ') }}
         </p>
