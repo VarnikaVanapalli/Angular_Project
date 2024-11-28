@@ -61,13 +61,25 @@ export class BookBusComponent {
     })
   }
 
-  seats = Array.from({ length: 40 }, (_, i) => ({
+  seats = Array.from({ length: 39 }, (_, i) => ({
     number: i + 1, // Seat numbers from 1 to 40
     selected: false, // Initial state is unselected
+    isBooked: Math.random() < 0.3, // Randomly mark ~30% of seats as already booked
   }));
 
+  pricePerSeat = 700; // Price per seat in INR
+
+  // Getters for dynamic counts
   get selectedSeatsCount(): number {
     return this.seats.filter((seat) => seat.selected).length;
+  }
+
+  get availableSeatsCount(): number {
+    return this.seats.filter((seat) => !seat.isBooked && !seat.selected).length;
+  }
+
+  get totalPrice(): number {
+    return this.selectedSeatsCount * this.pricePerSeat;
   }
 
   get selectedSeatNumbers(): number[] {
@@ -76,7 +88,10 @@ export class BookBusComponent {
       .map((seat) => seat.number);
   }
 
+  // Toggle seat selection
   toggleSeat(index: number): void {
-    this.seats[index].selected = !this.seats[index].selected;
+    if (!this.seats[index].isBooked) {
+      this.seats[index].selected = !this.seats[index].selected;
+    }
   }
 }
