@@ -13,15 +13,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="icon bi bi-bus"></i>Buses</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-train"></i>Trains</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-airplane"></i>Flights</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon bi bi-building"></i>Hotels</a>
-        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="icon bi bi-gift"></i>Offers</a>
         </li>
@@ -31,12 +22,10 @@
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="icon bi bi-headset"></i>My Bookings</a>
         </li>
-        
+        <li><a class="login-btn" [routerLink]="['/login-page']">Get Started</a></li>
       </ul>
     </div>
-    <div>
-      <a class="login-btn" [routerLink]="['/login-page']">Get Started</a>
-    </div>
+    
   </div>
 </nav>
 
@@ -49,12 +38,12 @@
     <h1 class="">Bus Booking System</h1>
   </header>
 
-  <!-- Search Form -->
+  
   <section class="search-sec">
     <div class="container mt-5 d-flex justify-content-center">
       <form class="search-form d-flex align-items-center shadow-lg" >
         <div class="row w-100 text-white">
-          <!-- From Location -->
+          
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
@@ -71,12 +60,12 @@
             </div>
           </div>
 
-          <!-- Arrow Icon -->
+          
           <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
             <i class="bi bi-arrow-left-right fs-4 text-black"></i>
           </div>
 
-          <!-- To Location -->
+          
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
@@ -93,7 +82,7 @@
             </div>
           </div>
 
-          <!-- Travel Date -->
+          
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-calendar"></i></span>
@@ -106,7 +95,7 @@
             </div>
           </div>
 
-          <!-- Search Button -->
+          
           <div class="col-md-2 text-center">
             <button (click)="redirectBuses()"  class="btn btn-light w-100" >
               Search Buses
