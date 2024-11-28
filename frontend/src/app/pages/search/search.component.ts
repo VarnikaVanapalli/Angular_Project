@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule for Angular directives
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { BusService } from '../../service/bus.service';
 import { LocationService } from '../../service/location.service';
 import { TrendingPackagesComponent } from "../trending-packages/trending-packages.component";
 import { EnjoyAppComponent } from "../enjoy-app/enjoy-app.component";
 import { FooterComponent } from "../footer/footer.component";
+import { SearchParamsService } from '../../service/search-params.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,7 @@ import { FooterComponent } from "../footer/footer.component";
     CommonModule,
     RouterLink,
     RouterModule,
+    RouterOutlet,
     TrendingPackagesComponent,
     EnjoyAppComponent,
     FooterComponent
@@ -29,19 +31,19 @@ export class SearchComponent implements OnInit {
 
   locations: { id: number, name: string }[] = []; // Locations should be an array of objects with id and name
   buses: any[] = [];
-  fromLocation: number = 0;  // Store location ids
-  toLocation: number = 0;    // Store location ids
-  travelDate: Date | undefined;
+  fromLocation: number=0 ;  // Store location ids
+  toLocation: number=0;    // Store location ids
+  travelDate!: Date;
 
   constructor(
-    private router: Router,
+    private router :Router,
+    private searchParamsService: SearchParamsService,
     private locationService: LocationService,
-    private busService: BusService
   ) {}
   ngOnInit(): void {
+    
     this.locationService.getLocations().subscribe({
-      next: (data) => {
-        console.log('Locations from backend:', data); // Log the response from the backend
+      next: (data) => { // Log the response from the backend
         this.locations = data; // Assuming the response is an array of objects with { id, name }
       },
       error: (err) => {
@@ -49,26 +51,28 @@ export class SearchComponent implements OnInit {
       }
     });
   }
-  navigateToAvailableBuses() {
-    const selectedFromLocation = this.fromLocation;
-    const selectedToLocation=this.toLocation;
-    const selectedDate=this.travelDate;
-
-    // Navigate to the available-buses page, passing selected values as query params
-    this.router.navigate(['/available-buses'], {
-      queryParams: { selectedFromLocation, selectedToLocation, selectedDate }
+  onFromLocationChange(event: Event): void {
+    console.log('Selected From Location ID:', this.fromLocation);
+  }
+  func(){
+    console.log('Setting search parameters:', { 
+      fromLocation: this.fromLocation, 
+      toLocation: this.toLocation, 
+      travelDate: this.travelDate 
     });
+    this.searchParamsService.setSearchParams(this.fromLocation, this.toLocation, this.travelDate);
   }
   
+  
 
-  onSearch(): void {
-    // When the user submits the search, fetch the buses based on the selected locations
-    if (this.fromLocation && this.toLocation) {
-      this.busService
-        .getBuses(this.fromLocation, this.toLocation)
-        .subscribe((data) => {
-          this.buses = data;
-        });
-    }
-  }
+  // onSearch(): void {
+  //   // When the user submits the search, fetch the buses based on the selected locations
+  //   if (this.fromLocation && this.toLocation) {
+  //     this.busService
+  //       .getBuses(this.fromLocation, this.toLocation)
+  //       .subscribe((data) => {
+  //         this.buses = data;
+  //       });
+  //   }
+  // }
 }

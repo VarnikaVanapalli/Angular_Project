@@ -16,6 +16,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MovingbusComponent } from "../movingbus/movingbus.component";
 import { BookBusComponent } from '../book-bus/book-bus.component';
+import { SearchParamsService } from '../../service/search-params.service';
 
 
 
@@ -28,12 +29,13 @@ import { BookBusComponent } from '../book-bus/book-bus.component';
 })
 export class AvailableBusesComponent implements OnInit {
 
-  location$: Observable<any[]> = new Observable<any[]>;
-  fromLocation: number=0;
-  toLocation: number=0;
-  date: Date |undefined;
+  locations: { id: number, name: string }[] = [];
+  fromLocation!: number ;
+  toLocation!: number;
+  date!: Date |null;
   busList: any[]=[];
   constructor(
+    private searchParamsService: SearchParamsService,
     private router: Router,
     private route: ActivatedRoute,
     
@@ -41,20 +43,27 @@ export class AvailableBusesComponent implements OnInit {
     private busService: BusService
   ) {}
   ngOnInit(): void {
-    this.getAllLocations();
-    this.route.queryParams.subscribe(params => {
-      this.fromLocation = +params['selectedFromLocation'];
-      this.toLocation = +params['selectedToLocation'];
-      this.date = params['selectedDate'];
-
-      if (this.fromLocation && this.toLocation) {
-        this.fetchAvailableBuses();
+    this.locationService.getLocations().subscribe({
+      next: (data) => {// Log the response from the backend
+        this.locations = data; // Assuming the response is an array of objects with { id, name }
+      },
+      error: (err) => {
+        console.error('Error fetching locations:', err); // Log any error
       }
     });
-}
+    const searchParams = this.searchParamsService.getSearchParams();
+    this.fromLocation = searchParams.sfromLocation ?? null;
+    this.toLocation = searchParams.toLocation ?? null;
+    this.date = searchParams.date ?? null;
+    if(this.fromLocation&& this.toLocation&&this.date){
+      this.fetchAvailableBuses();
+    }
+   
+  }
   fetchAvailableBuses() {
     this.busService.getBuses(this.fromLocation, this.toLocation).subscribe(
       (data: any[]) => {
+        console.log('details from backend:', data);
         this.busList = data;
       },
       ( error: any) => {
@@ -62,9 +71,7 @@ export class AvailableBusesComponent implements OnInit {
       }
     );
   }
-  getAllLocations(){
-    this.location$=this.locationService.getLocations(); 
-  }
+  
   
   // isHidden: boolean = true;
   // toggleVisibility() {

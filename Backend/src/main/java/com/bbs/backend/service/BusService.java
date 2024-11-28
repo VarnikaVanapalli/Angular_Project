@@ -14,6 +14,7 @@ public class BusService {
 
     public  List<Bus> getBusesByLocation(int fromLocation, int toLocation) {
         List<Bus> buses = busRepository.findByFromLocationAndToLocation(fromLocation, toLocation);
+        System.out.println("From Location: " + fromLocation + ", To Location: " + toLocation);
         System.out.println("Fetched buses: " + buses); // Debugging line
         return buses;
     }

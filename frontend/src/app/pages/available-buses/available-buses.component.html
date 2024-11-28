@@ -48,48 +48,80 @@
 
     <!-- Search Form -->
     <section class="search-sec">
-        <div class="container mt-5 d-flex justify-content-center">
-            <form class="search-form d-flex align-items-center shadow-lg">
-              <div class=" row w-100 text-white">
-                <div class=" col-md-3 d-flex align-items-center">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
-                    <select class="form-select" name="fromLocation" [(ngModel)]="fromLocation">
-                      <option value="" disabled selected>Select from Available Locations</option>
-                      @for (item of location$ |async; track $index) {
-                        <option [value]="item.locationId">{{item.locationName}}</option>
-                      }
-                    </select>
+      <div class="container mt-5 d-flex justify-content-center">
+        <form class="search-form d-flex align-items-center shadow-lg">
+          <div class="row w-100 text-white">
+            <!-- From Location -->
+            <div class="col-md-3 d-flex align-items-center">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi-bus-front-fill"></i></span>
+                <select 
+                  class="form-select" 
+                  name="fromLocation" 
+                  [(ngModel)]="fromLocation" >
+                  <!-- Placeholder for when fromLocation is null -->
+                  <option value="" disabled [selected]="!fromLocation">Select From Location</option>
+                  <!-- Iterate over locations and select the value if it matches fromLocation -->
+                  <option *ngFor="let location of locations" [value]="location.id" [selected]="fromLocation === location.id">
+                    {{ location.name }}
+                  </option>
+                </select>
 
-                  </div>
-                </div>
-                <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
-                  <i class="bi bi-arrow-left-right fs-4 text-black"></i>
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-                    <select class="form-select" name="toLocation" [(ngModel)]="toLocation">
-                      <option  value="" disabled selected>Select from Available Locations</option>
-                      @for (item of location$ |async; track $index) {
-                        <option [value]="item.locationId">{{item.locationName}}</option>
-                      }
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3 d-flex align-items-center">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                    <input type="date" class="form-control" name="travelDate"placeholder="Date">
-                  </div>
-                </div>
-                <div class="col-md-2 text-center">
-                  <!-- <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button> -->
-                  <a class="btn btn-light  w-100" [routerLink]="['/available-buses']">Search Buses</a>
-                </div>
               </div>
-            </form>
+            </div>
+  
+            <!-- Arrow Icon -->
+            <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
+              <i class="bi bi-arrow-left-right fs-4 text-black"></i>
+            </div>
+  
+            <!-- To Location -->
+            <div class="col-md-3 d-flex align-items-center">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+                <select 
+                  class="form-select" 
+                  name="toLocation" 
+                  [(ngModel)]="toLocation">
+                  <!-- Placeholder for when toLocation is null -->
+                  <option value="" disabled [selected]="!toLocation">Select To Location</option>
+                  <!-- Iterate over locations and select the value if it matches toLocation -->
+                  <option *ngFor="let location of locations" [value]="location.id" [selected]="toLocation === location.id">
+                    {{ location.name }}
+                  </option>
+                </select>
+
+              </div>
+            </div>
+  
+            <!-- Travel Date -->
+            <div class="col-md-3 d-flex align-items-center">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                <input 
+                  type="date" 
+                  class="form-control" 
+                  name="travelDate" 
+                  [(ngModel)]="date" 
+                  [value]="date ? (date | date:'yyyy-MM-dd') : null" 
+                  placeholder="Date">
+
+              </div>
+            </div>
+  
+            <!-- Search Button -->
+            <div class="col-md-2 text-center">
+              <button 
+                type="button" 
+                class="btn btn-light w-100" 
+                (click)="fetchAvailableBuses()"
+                 >
+                Search Buses
+              </button>
+            </div>
           </div>
+        </form>
+      </div>
     </section>
 </div>
 
@@ -105,7 +137,7 @@
           <h2 class="mx-5"> Available Buses</h2>
         </div>
           
-          <!-- @for (item of busList; track $index) { -->
+          <!-- @for (item of busList; track $index) { 
   
             <div class="row">
               <div class="col-12">
@@ -268,9 +300,55 @@
             </div>
         </div>
   
-          <!-- } -->
+          } -->
+        <!-- Buses List -->
+  <section id="buses-list" class="my-4" *ngIf="busList && busList.length > 0">
+    <div class="row" *ngFor="let item of busList">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+              <h5 class="card-title">{{ item.busName }}</h5>
+              <p class="card-text">{{ item.vendorName }}</p>
+            </div>
+            <div class="col-md-9">
+              <div class="card-body row">
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.departureTime }}</strong></p>
+                  <p class="card-text">Departure</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.duration }}</strong></p>
+                  <p class="card-text">Duration</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.arrivalTime }}</strong></p>
+                  <p class="card-text">Arrival</p>
+                  <p class="text-danger">{{ item.arrivalDate }}</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{ item.rating }}</strong> ⭐</p>
+                  <p class="card-text">{{ item.ratingsCount }} Ratings</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>INR {{ item.price }}</strong></p>
+                  <p class="card-text">
+                    {{ item.availableSeats }} Seats available out of {{ item.totalSeats }}
+                  </p>
+                </div>
+                <div class="col-md-2 text-end">
+                  <button class="btn btn-danger" [routerLink]="['/book-bus', item.id]">Book Seat</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
           
       </section>
 </div>
+<router-outlet></router-outlet>
 
 
