@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -26,6 +26,10 @@ public class BusController {
             @RequestParam int toLocation) {
                 List<Bus> buses = busService.getBusesByLocation(fromLocation, toLocation);
                 return buses;
+    }
+    @GetMapping("/{busId}")
+    public Bus getBusDetails(@PathVariable("busId") long busId) {
+        return busService.getBusDetailsById(busId);
     }
 }
 

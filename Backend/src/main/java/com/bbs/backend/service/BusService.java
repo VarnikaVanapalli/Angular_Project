@@ -18,5 +18,8 @@ public class BusService {
         System.out.println("Fetched buses: " + buses); // Debugging line
         return buses;
     }
+    public Bus getBusDetailsById(long busId) {
+        return busRepository.findById(busId).orElse(null);
+    }
 }
 
