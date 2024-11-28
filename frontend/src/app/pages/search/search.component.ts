@@ -41,29 +41,54 @@ export class SearchComponent implements OnInit {
     private locationService: LocationService,
   ) {}
   ngOnInit(): void {
-    
+
     this.locationService.getLocations().subscribe({
       next: (data) => { // Log the response from the backend
         this.locations = data; // Assuming the response is an array of objects with { id, name }
-      },
+        },
       error: (err) => {
         console.error('Error fetching locations:', err); // Log any error
       }
     });
   }
-  onFromLocationChange(event: Event): void {
+  onFromLocationChange(id:EventTarget | null): void {
+    if (!id){
+      return
+    }
+    const element:any = id;
+    this.fromLocation = element.value;
     console.log('Selected From Location ID:', this.fromLocation);
   }
-  func(){
+  onToLocationChange(id:EventTarget|null):void{
+    if (!id){
+      return
+    }
+    const element:any = id;
+    this.toLocation = element.value;
+    console.log('Selected to Location ID:', this.toLocation);
+  }
+  func(datte:EventTarget|null):void{
+    if(!datte){
+      return
+    }
+    const element:any = datte;
+    this.travelDate = element.value;
+    console.log('Selected date:', this.travelDate);
+    
     console.log('Setting search parameters:', { 
       fromLocation: this.fromLocation, 
       toLocation: this.toLocation, 
       travelDate: this.travelDate 
     });
     this.searchParamsService.setSearchParams(this.fromLocation, this.toLocation, this.travelDate);
+    
   }
   
-  
+  redirectBuses(){
+    
+    this.router.navigate(['/available-buses']);
+
+  }
 
   // onSearch(): void {
   //   // When the user submits the search, fetch the buses based on the selected locations

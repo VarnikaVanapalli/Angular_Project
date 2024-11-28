@@ -10,14 +10,13 @@ import { BookBusComponent } from './pages/book-bus/book-bus.component';
 export const routes: Routes = [
     {
         path:'',
-        redirectTo: 'search',
-        pathMatch:'full'
+        component:SearchComponent
 
     },
-    {
-        path:'search',
-        component:SearchComponent
-    },
+    // {
+    //     path:'search',
+    //     component:SearchComponent
+    // },
     {
         path:'login-page',
         component:LoginPageComponent

@@ -23,15 +23,15 @@ import { SearchParamsService } from '../../service/search-params.service';
 @Component({
   selector: 'app-available-buses',
   standalone: true,
-  imports: [AsyncPipe, FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule, FooterComponent, MovingbusComponent,BookBusComponent],
+  imports: [FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule],
   templateUrl: './available-buses.component.html',
   styleUrl: './available-buses.component.css'
 })
 export class AvailableBusesComponent implements OnInit {
 
   locations: { id: number, name: string }[] = [];
-  fromLocation!: number ;
-  toLocation!: number;
+  fromLocation!: number |null ;
+  toLocation!: number|null;
   date!: Date |null;
   busList: any[]=[];
   constructor(
@@ -52,15 +52,16 @@ export class AvailableBusesComponent implements OnInit {
       }
     });
     const searchParams = this.searchParamsService.getSearchParams();
-    this.fromLocation = searchParams.sfromLocation ?? null;
-    this.toLocation = searchParams.toLocation ?? null;
-    this.date = searchParams.date ?? null;
+    this.fromLocation = searchParams.sfromLocation;
+    this.toLocation = searchParams.toLocation;
+    this.date = searchParams.date;
     if(this.fromLocation&& this.toLocation&&this.date){
       this.fetchAvailableBuses();
     }
    
   }
   fetchAvailableBuses() {
+    if (this.fromLocation !== null && this.toLocation !== null) {
     this.busService.getBuses(this.fromLocation, this.toLocation).subscribe(
       (data: any[]) => {
         console.log('details from backend:', data);
@@ -71,6 +72,7 @@ export class AvailableBusesComponent implements OnInit {
       }
     );
   }
+}
   
   
   // isHidden: boolean = true;

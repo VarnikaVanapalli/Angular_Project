@@ -1,3 +1,4 @@
+<div>
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
     <a class="navbar-brand" href="#">
@@ -61,7 +62,7 @@
                 class="form-select" 
                 name="fromLocation" 
                 [(ngModel)]="fromLocation"
-                (change)="onFromLocationChange($event)">
+                (change)="onFromLocationChange($event.target)">
                 <option value="" disabled selected>Select From Location</option>
                 <option *ngFor="let location of locations" [value]="location.id">
                   {{ location.name }}
@@ -82,7 +83,8 @@
               <select 
                 class="form-select" 
                 name="toLocation" 
-                [(ngModel)]="toLocation">
+                [(ngModel)]="toLocation"
+                (change)="onToLocationChange($event.target)">
                 <option value="" disabled selected>Select To Location</option>
                 <option *ngFor="let location of locations" [value]="location.id">
                   {{ location.name }}
@@ -100,13 +102,13 @@
                 class="form-control" 
                 name="travelDate" 
                 [(ngModel)]="travelDate" 
-                placeholder="Date" (change)="func()">
+                placeholder="Date" (change)="func($event.target)">
             </div>
           </div>
 
           <!-- Search Button -->
           <div class="col-md-2 text-center">
-            <button class="btn btn-light w-100" [routerLink]="['/available-buses']">
+            <button (click)="redirectBuses()"  class="btn btn-light w-100" >
               Search Buses
             </button>
           </div>
@@ -114,11 +116,14 @@
       </form>
     </div>
   </section>
-
-  
+ 
+ 
 </div>
-<app-trending-packages></app-trending-packages>
-<app-enjoy-app></app-enjoy-app>
-<app-footer></app-footer>
 
-<router-outlet />
+<div>
+  <app-trending-packages></app-trending-packages>
+  <app-enjoy-app></app-enjoy-app>
+  <app-footer></app-footer>
+</div>
+
+</div>

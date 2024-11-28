@@ -47,7 +47,7 @@
     
 
     <!-- Search Form -->
-    <section class="search-sec">
+    <!-- <section class="search-sec">
         <div class="container mt-5 d-flex justify-content-center">
             <form class="search-form d-flex align-items-center shadow-lg">
               <div class=" row w-100 text-white">
@@ -84,14 +84,14 @@
                   </div>
                 </div>
                 <div class="col-md-2 text-center">
-                  <!-- <button type="button" (click)="onSearch();toggleVisibility()" class="btn btn-light  w-100">SEARCH BUSES</button> -->
+                  
                   <a class="btn btn-light  w-100" [routerLink]="['/available-buses']">Search Buses</a>
                 </div>
               </div>
             </form>
           </div>
     </section>
-</div>
+</div> -->
 
 <section>
     <div class="bg-con">
@@ -102,53 +102,59 @@
 <section>
   <div class="bookbus">
     <div class="left">
-      <div class="name">
-        <h5>Bharathi</h5>
-        <p>A1 travels</p>
+      <div class="left-border">
+        <div class="name">
+          <h5>Bharathi</h5>
+          <p>A1 travels</p>
+        </div>
+        <div class="info">
+          <p class="card-text">Departure:</p>
+          <p class="card-text"><strong>{{"12.00" |  date:"hh:mm:ss"}}</strong></p>
+        </div>
+        <div class="info">
+          <p class="card-text">Duration:</p>
+          <p class="card-text"><strong>16 hr</strong></p>
+        </div>
+        <div class="info">
+          <p class="card-text">Arrival:</p>
+          <p class="card-text"><strong>{{"9.00" |  date:"hh:mm:ss"}}</strong></p>
+          <!-- <p class="text-danger">{{"8.00" |  date:'dd-MM-yy'}}</p> -->
+        </div>
+        <div class="info">
+          
+          <p  class="text-success">
+            Total Price: INR {{ totalPrice }}
+          </p>
+        </div>
+        <button class="btn btn-danger" [routerLink]="['/book-bus']">Book Seat</button>
       </div>
-      <div class="info">
-        <p class="card-text">Departure:</p>
-        <p class="card-text"><strong>{{"12.00" |  date:"hh:mm:ss"}}</strong></p>
-      </div>
-      <div class="info">
-        <p class="card-text">Duration:</p>
-        <p class="card-text"><strong>16 hr</strong></p>             
-      </div>
-      <div class="info">
-        <p class="card-text">Arrival:</p>
-        <p class="card-text"><strong>{{"9.00" |  date:"hh:mm:ss"}}</strong></p>
-        <!-- <p class="text-danger">{{"8.00" |  date:'dd-MM-yy'}}</p> -->
-      </div>
-      <div class="info">
-        <p class="card-text">Price:</p>
-        <p class="card-text"><strong>INR 700</strong></p>
-        
-      </div>
-      <button class="btn btn-danger" [routerLink]="['/book-bus']">Book Seat</button>
     </div>
     <div class="right">
-      <h4>Bus Seats</h4>
+      
       <div class="bus-layout">
-        <div
-          *ngFor="let seat of seats; let i = index"
-          class="seat"
-          [class.selected]="seat.selected"
-          [class.unselected]="!seat.selected"
-          (click)="toggleSeat(i)"
-        >
-          {{ seat.number }}
+        <img src="steering.jpeg" alt="" class="bus-steering"/>
+        <div class="seat-row" *ngFor="let seat of seats; let i = index">
+          <button
+            class="seat"
+            [ngClass]="{
+              'selected-seat': seat.selected,
+              'booked-seat': seat.isBooked,
+              'available-seat': !seat.selected && !seat.isBooked
+            }"
+            (click)="toggleSeat(i)"
+            [disabled]="seat.isBooked"
+          >
+            {{ seat.number }}
+          </button>
         </div>
       </div>
+      
       <div class="seat-info">
         <p>Total Seats: {{ seats.length }}</p>
+        <p>Available Seats: {{ availableSeatsCount }}</p>
         <p>Selected Seats: {{ selectedSeatsCount }}</p>
         <p>Remaining Seats: {{ seats.length - selectedSeatsCount }}</p>
-      </div>
-      <div class="seat-info">
-        <p>Total Seats: {{ seats.length }}</p>
-        <p>Selected Seats: {{ selectedSeatsCount }}</p>
-        <p>Remaining Seats: {{ seats.length - selectedSeatsCount }}</p>
-        <p *ngIf="selectedSeatsCount > 0">
+        <p >
           Chosen Seats: {{ selectedSeatNumbers.join(', ') }}
         </p>
       </div>
