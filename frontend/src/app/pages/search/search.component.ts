@@ -28,7 +28,7 @@ import { SearchParamsService } from '../../service/search-params.service';
 export class SearchComponent implements OnInit {
    // Bind this to the date picker input
 
-
+   menuOpen = false;
   locations: { id: number, name: string }[] = []; // Locations should be an array of objects with id and name
   buses: any[] = [];
   fromLocation: number=0 ;  // Store location ids
@@ -82,6 +82,10 @@ export class SearchComponent implements OnInit {
     });
     this.searchParamsService.setSearchParams(this.fromLocation, this.toLocation, this.travelDate);
     
+  }
+  
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
   
   redirectBuses(){
