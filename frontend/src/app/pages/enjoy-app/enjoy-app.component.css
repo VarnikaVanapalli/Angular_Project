@@ -101,3 +101,26 @@
     }
 }
 
+@media (max-width: 849px) {
+    .redcard{
+        width: 100%;
+        padding: 20px;
+    }
+    .rc-left{
+        width: 100%;
+    }
+    .rc-right img{
+        width: 300px;
+        height: 300px;
+    }
+    .whitecard{
+        width: 90%;
+    }
+  
+}
+
+  
+  @media screen and (max-width: 680px){
+    
+    
+  }

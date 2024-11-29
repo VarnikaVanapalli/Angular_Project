@@ -94,6 +94,24 @@ export class SearchComponent implements OnInit {
 
   }
 
+  isSidebarOpen = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+
+    // Disable body scroll when sidebar is open
+    
+    console.log('Sidebar state:', this.isSidebarOpen); // Debug log
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
+    
+  }
+  debugToggle() {
+    alert('Button Clicked');
+  }
+
   // onSearch(): void {
   //   // When the user submits the search, fetch the buses based on the selected locations
   //   if (this.fromLocation && this.toLocation) {

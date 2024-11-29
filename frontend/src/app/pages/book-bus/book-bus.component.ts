@@ -18,6 +18,7 @@ import { NgModule } from '@angular/core';
 import moment from 'moment';
 import { BrowserModule } from '@angular/platform-browser';
 import { MovingbusComponent } from "../movingbus/movingbus.component";
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -28,6 +29,7 @@ import { MovingbusComponent } from "../movingbus/movingbus.component";
   styleUrl: './book-bus.component.css'
 })
 export class BookBusComponent {
+  
   location$: Observable<any[]> = new Observable<any[]>;
 
   busId:number|null=null;
@@ -110,5 +112,23 @@ export class BookBusComponent {
     if (!this.seats[index].isBooked) {
       this.seats[index].selected = !this.seats[index].selected;
     }
+  }
+
+  
+
+  
+  isModalVisible: boolean = false;
+  bookSeat() {
+    // Logic for booking seat (can be enhanced further)
+    Swal.fire({
+      title: 'Success!',
+      text: 'Ticket booked successfully.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  closeModal() {
+    this.isModalVisible = false;
   }
 }

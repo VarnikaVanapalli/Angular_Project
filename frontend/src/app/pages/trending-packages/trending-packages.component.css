@@ -20,7 +20,7 @@
 }
 
 .tp-cards{
-    border: 1px solid red;
+    
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
