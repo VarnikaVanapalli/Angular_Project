@@ -161,6 +161,18 @@ ul li:hover{
   z-index: 9999;
 }
 
+.open{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #343a40;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  z-index: 9999;
+}
+
 .sidebar.open {
   width: 250px;
 }
@@ -202,6 +214,23 @@ ul li:hover{
 
 body.no-scroll {
   overflow: hidden;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: #333; /* Adjust color as needed */
+  cursor: pointer;
+}
+
+.hamburger-btn i {
+  font-size: 24px;
+}
+
+@media (min-width: 992px) {
+  .hamburger-btn {
+    display: none; /* Hide on larger screens */
+  }
 }
 
 

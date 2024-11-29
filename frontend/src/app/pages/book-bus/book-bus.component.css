@@ -206,15 +206,16 @@ ul li:hover{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  max-height: 80vh;
   margin-top: 90px;
-  padding: 40px;
+  padding: 10px;
 }
 
  .left-border{
   border: 1px solid black;
   border-radius: 40px;
   padding: 40px;
+  width: 80%;
 }
 
 .bookbus .left .name{
