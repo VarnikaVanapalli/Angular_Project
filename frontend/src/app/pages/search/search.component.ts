@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit {
     window.location.href=`/available-buses?starting=${this.fromLocation}&toLocation=${this.toLocation}&date=${this.travelDate}`
   }
 
-  isSidebarOpen = false;
+  
   
 
   toggleSidebar() {
