@@ -23,7 +23,7 @@ import { SearchParamsService } from '../../service/search-params.service';
 @Component({
   selector: 'app-available-buses',
   standalone: true,
-  imports: [FormsModule, DatePipe, RouterLink, CommonModule, RouterOutlet, RouterModule],
+  imports: [FormsModule, DatePipe, RouterLink, CommonModule, RouterModule],
   templateUrl: './available-buses.component.html',
   styleUrl: './available-buses.component.css'
 })
@@ -51,11 +51,25 @@ export class AvailableBusesComponent implements OnInit {
         console.error('Error fetching locations:', err); // Log any error
       }
     });
+    this.route.queryParams.subscribe((params) => {
+      let quer:any = params;
+      this.fromLocation =        quer['starting'];
+      this.toLocation = quer['toLocation'];
+      const dateString = quer['date']
+      // alert(this.toLocation)
+    // this.toLocation =  Number(tsearchParams.get('toLocation'));
+    // const dateString = this.route.snapshot.paramMap.get('date'); // String from the URL
+    // alert(this.toLocation)
+    if (dateString) {
+      this.date = new Date(dateString); // Converts the string to a Date object
+      console.log(this.date); // Outputs a Date object
+    }
+    else{
+      this.date = new Date();
+    }
+    });
     const searchParams = this.searchParamsService.getSearchParams();
-    this.fromLocation = searchParams.sfromLocation;
-    this.toLocation = searchParams.toLocation;
-    this.date = searchParams.date;
-    if(this.fromLocation&& this.toLocation&&this.date){
+       if(this.fromLocation&& this.toLocation&&this.date){
       this.fetchAvailableBuses();
     }
    

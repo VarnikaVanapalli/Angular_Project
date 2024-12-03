@@ -8,6 +8,7 @@ import { TrendingPackagesComponent } from "../trending-packages/trending-package
 import { EnjoyAppComponent } from "../enjoy-app/enjoy-app.component";
 import { FooterComponent } from "../footer/footer.component";
 import { SearchParamsService } from '../../service/search-params.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,6 @@ import { SearchParamsService } from '../../service/search-params.service';
     CommonModule,
     RouterLink,
     RouterModule,
-    RouterOutlet,
     TrendingPackagesComponent,
     EnjoyAppComponent,
     FooterComponent
@@ -34,6 +34,7 @@ export class SearchComponent implements OnInit {
   fromLocation: number=0 ;  // Store location ids
   toLocation: number=0;    // Store location ids
   travelDate!: Date;
+  isSidebarOpen = true;
 
   constructor(
     private router :Router,
@@ -85,9 +86,8 @@ export class SearchComponent implements OnInit {
   }
   
   redirectBuses(){
-    
-    this.router.navigate(['/available-buses']);
-
+    // this.router.navigate(['/available-buses']);
+    window.location.href=`/available-buses?starting=${this.fromLocation}&toLocation=${this.toLocation}&date=${this.travelDate}`
   }
 
   isSidebarOpen = false;
@@ -95,7 +95,6 @@ export class SearchComponent implements OnInit {
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
-    
     console.log('Sidebar state:', this.isSidebarOpen); // Debug log
   }
 

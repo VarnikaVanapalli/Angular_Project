@@ -5,8 +5,11 @@
       <img src="tyre.png" alt="abhibus" class="logoimage">
       <h1>BusFever</h1>
     </a>
-    <button class="navbar-toggler"  (click)="toggleSidebar()">
+    <!-- <button class="navbar-toggler"  (click)="toggleSidebar()">
       <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <button class="hamburger-btn d-lg-none" (click)="toggleSidebar()">
+      <i class="bi bi-list" style="font-size: 1.5rem;"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
@@ -33,10 +36,11 @@
 
 
 <div
-[ngClass]="{'sidebar': true, 'open': isSidebarOpen}"
+class="sidebar"
+
 >
   <div class="sidebar-content">
-    <button class="close-btn" (click)="closeSidebar()" >&#x2715;</button>
+    <button class="close-btn" (click)="toggleSidebar()">&#x2715;</button>
     <ul>
       <li><a href="#"><i class="icon bi bi-bus"></i>Buses</a></li>
       <li><a href="#"><i class="icon bi bi-gift"></i>Offers</a></li>

@@ -36,6 +36,10 @@ export const routes: Routes = [
     {
         path:'book-bus/:id',
         component:BookBusComponent
+    },
+    {
+        path:'**',
+        component:SearchComponent
     }
 
 ];
